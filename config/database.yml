@@ -28,4 +28,4 @@ development:
   encoding: utf8
   database: car_db
   username: root
-  password: manurajlr
+  password: password
