@@ -1,0 +1,68 @@
+<%= form_for(@user, remote: true) do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <div id="make_div">
+    <%= select_tag(:make, options_for_select(@makes),{prompt: 'Select Make'})%>
+    </div>
+    <div id='model_div'></div>
+    <div id='version_div'></div>
+  </p>
+  <p>
+    Username
+    <%= f.text_field :name %>
+  </p>
+  <p id="name_div">
+  </p>
+
+  <p>
+    <%= f.submit "submit"%>
+  </p>
+  <% end %>
+  <p id="test">Testing</p>
+  <button id="hide">Hide</button>
+  <button id="show">Show</button>
+  
+<script>
+$("#make").change(function() {
+  $.ajax({
+     type: "POST",// GET in place of POST
+     contentType: "application/json; charset=utf-8",
+     url: "users#create",
+     data : JSON.stringify({make_id:document.getElementById('make').value}),
+     dataType: "script"
+     // success: function (result) {
+     //    //do somthing here
+     //    window.alert("success!!");
+     // },
+     // error: function (){
+     //    window.alert("something wrong!");
+     // }
+});
+});
+$("#model_div").change(function() {
+  $.ajax({
+     type: "POST",// GET in place of POST
+     contentType: "application/json; charset=utf-8",
+     url: "users#create",
+     data : JSON.stringify({model_id:document.getElementById('model').value}),
+     dataType: "script"
+});
+});
+$( "#user_name" ).keyup(function() {
+  $.ajax({
+     type: "POST",// GET in place of POST
+     contentType: "application/json; charset=utf-8",
+     url: "users#create",
+     data : JSON.stringify({user_name:document.getElementById('user_name').value}),
+     dataType: "script"
+});
+});
+$("#hide").click(function(){
+    $("#test").hide();
+});
+
+$("#show").click(function(){
+    $("#test").show();
+});
+</script>
+

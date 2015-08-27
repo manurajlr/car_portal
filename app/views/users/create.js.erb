@@ -1,0 +1,12 @@
+<% if(params[:make_id].present?) %>
+$('#model_div').html('<%= j select_tag(:model, options_for_select(@models ),{prompt: 'Select Model'})%>');
+<% end %>
+<% if(params[:model_id].present?) %>
+$('#version_div').html('<%= j select_tag(:versions, options_for_select(@versions ),{prompt: 'Select Version'})%>');
+<% end %>
+<% if(!params[:user_name].blank?) %>
+$('#name_div').html('Your name is <%= params[:user_name] %>');
+<% else %>
+$('#name_div').html('');
+<% end %>
+
